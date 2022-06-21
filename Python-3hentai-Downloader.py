@@ -22,6 +22,7 @@ path0 = os.path.dirname(__file__) # 获取脚本当前路径
 createdir = os.path.join('{path0}'.format(path0=path0),'{bzname}'.format(bzname=bzname))
 createdir = createdir.replace('\\','/')
 createdir = createdir.replace(' ','_')
+createdir = createdir.replace('|','_')
 os.mkdir(createdir)
 
 # 开始逐页下载
@@ -35,6 +36,7 @@ while dlnum <= int(maxnum):
     file = os.path.join('{path0}'.format(path0=path0),'{bzname}'.format(bzname=bzname),'{dlnum}.jpg'.format(dlnum=dlnum))
     file = file.replace('\\','/')
     file = file.replace(' ','_')
+    file = file.replace('|','_')
     with open(file,'wb') as f:
         f.write(getimg.content)
     print('第 {dlnum} 页下载完成'.format(dlnum=dlnum))
