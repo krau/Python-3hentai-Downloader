@@ -51,9 +51,9 @@ else:
 
 
 #若传入了-z或--zip则打包，并删除原文件
-print('正在打包...')
 for opt_name, opt_value in opts:
     if opt_name in ('-z', '--zip'):
+        print('正在打包...')
         shutil.make_archive('{bzname}'.format(bzname=bzname),'zip','{createdir}'.format(createdir=createdir))
         shutil.rmtree('{createdir}'.format(createdir=createdir))
-print('打包完成！')
+        print('打包完成！')
