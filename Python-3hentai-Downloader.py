@@ -22,7 +22,7 @@ path0 = os.path.dirname(__file__) # 获取脚本当前路径
 createdir = os.path.join('{path0}'.format(path0=path0),'{bzname}'.format(bzname=bzname))
 createdir = createdir.replace('\\','/')
 createdir = createdir.replace(' ','_')
-createdir = createdir.replace('|','_')
+createdir = createdir.replace('|','_') #特殊字符转换
 os.mkdir(createdir)
 
 # 开始逐页下载
@@ -32,7 +32,7 @@ while dlnum <= int(maxnum):
     imgurl = os.path.join('https://s7.3hentai.net/',
                           'd{id}'.format(id=id), '{dlnum}.jpg'.format(dlnum=dlnum))
     imgurl = imgurl.replace('\\', '/')
-    getimg = requests.get(imgurl)
+    getimg = requests.get(imgurl,headers=head)
     file = os.path.join('{path0}'.format(path0=path0),'{bzname}'.format(bzname=bzname),'{dlnum}.jpg'.format(dlnum=dlnum))
     file = file.replace('\\','/')
     file = file.replace(' ','_')
