@@ -2,6 +2,11 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
+import sys
+import getopt
+import shutil
+
+opts, args = getopt.getopt(sys.argv[1:], '-z', ['zip'])
 
 id = int(input("请输入3hentai本子id："))
 bzurl = os.path.join('https://3hentai.net/d',
@@ -42,4 +47,13 @@ while dlnum <= int(maxnum):
     print('第 {dlnum} 页下载完成'.format(dlnum=dlnum))
     dlnum += 1
 else:
-    print('{bzname} 下载完成'.format(bzname=bzname))
+    print('{bzname} 下载完成！'.format(bzname=bzname))
+
+
+#若传入了-z或--zip则打包，并删除原文件
+print('正在打包...')
+for opt_name, opt_value in opts:
+    if opt_name in ('-z', '--zip'):
+        shutil.make_archive('{bzname}'.format(bzname=bzname),'zip','{createdir}'.format(createdir=createdir))
+        shutil.rmtree('{createdir}'.format(createdir=createdir))
+print('打包完成！')
